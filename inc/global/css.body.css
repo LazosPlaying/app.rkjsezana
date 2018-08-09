@@ -1,0 +1,30 @@
+/*   ___       __             __       ___      ___   ___  __    __       _______.    _______  __    __
+    /   \     |  |           |  |     /   \     \  \ /  / |  |  |  |     /       |   |   ____||  |  |  |
+   /  ^  \    |  |           |  |    /  ^  \     \  V  /  |  |  |  |    |   (----`   |  |__   |  |  |  |
+  /  /_\  \   |  |     .--.  |  |   /  /_\  \     >   <   |  |  |  |     \   \       |   __|  |  |  |  |
+ /  _____  \  |  `----.|  `--'  |  /  _____  \   /  .  \  |  `--'  | .----)   |    __|  |____ |  `--'  |
+/__/     \__\ |_______| \______/  /__/     \__\ /__/ \__\  \______/  |_______/    (__)_______| \______/
+*/
+/*
+///////////////////////////////////////////////////////////
+/////////////////////// BODY STYLING //////////////////////
+///////////////////////////////////////////////////////////
+*/
+body {
+	background-image: url('https://static.rkjsezana.app/img/image1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	background-color: #999;
+
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+
+	overflow-x: hidden;
+}
+
+main {
+	flex: 1 0 auto;
+}

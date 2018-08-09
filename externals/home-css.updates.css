@@ -1,0 +1,78 @@
+
+.updates {
+  	position: relative;
+  	margin: 0 0 30px 0;
+  	padding: 0;
+  	list-style: none;
+}
+.updates:before {
+  	content: '';
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+  	width: 4px;
+  	background: #ddd;
+  	right: 8.3px;
+  	margin: 0;
+  	border-radius: 2px;
+}
+.updates > .update {
+  	position: relative;
+  	margin-right: 10px;
+  	margin-bottom: 15px;
+	display: flow-root;
+	text-align: right;
+}
+.updates > .update:before,
+.updates > .update:after {
+  	content: " ";
+  	display: table;
+}
+.updates > .update:after {
+  	clear: both;
+}
+.updates > .update > .update-header {
+	display: flow-root;
+}
+.updates > .update > .update-header > i.material-icons {
+  	box-shadow: 3px 8px 5px rgba(0, 0, 0, 0.1);
+  	width: 30px;
+  	height: 30px;
+  	font-size: 18px;
+  	line-height: 30px;
+  	position: absolute;
+  	color: #fff;
+  	background: #4caf50;
+  	border-radius: 50%;
+  	text-align: center;
+  	right: -15px;
+  	top: 0;
+}
+.updates .update-time {
+  	color: #999;
+  	padding: 10px;
+  	font-size: 12px;
+}
+
+.updates > .update > .update-post {
+  	box-shadow: 3px 15px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
+  	border-radius: 3px;
+  	margin-top: 0;
+  	background: #fff;
+  	color: #444;
+  	margin-right: 20px;
+  	margin-left: 15px;
+  	padding: 0;
+  	position: relative;
+}
+.updates > .update .update-title {
+ 	margin: 0;
+ 	color: #555;
+ 	border-bottom: 1px solid #f4f4f4;
+ 	padding: 10px;
+ 	font-size: 16px;
+ 	line-height: 1.1;
+}
+.updates > .update > .update-post > .update-content {
+ 	padding: 10px;
+}
