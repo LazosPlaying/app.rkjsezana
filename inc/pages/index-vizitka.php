@@ -1,6 +1,6 @@
 <div class="card" style="margin-top:14vh;">
 	<div class="card-content grey lighten-4">
-		<div class="row" id="mainrow">
+		<div class="row canSelectText" id="mainrow">
 			<div class="col s12 m12 l5 xl3 cardnavbar">
 				<a href="#vizitka-rkj-sezana" class="btn btn-small waves-effect waves-light red darken-2 smoothScroll">Vizitka RKJ Sežana</a>
 				<a href="#ceta-ognjenega-ruja-komen" class="btn btn-small waves-effect waves-light red darken-4 smoothScroll">Četa Ognjenega ruja Komen</a>
@@ -83,7 +83,7 @@
 				</div>
 				<div class="col s12 m12 l12" id="simbolika-znaka-rkj-sezana">
 					<span class="section-title red-text text-darken-4">Simbolika znaka RKJ Sežana</span>
-					<img src="https://static.rkjsezana.app/img/logo-2018-06-03.png" alt="RKJ logo" class="rkj-logo">
+					<img src="https://rkjsezana.app/src/2018-08-12/rkj-logo-medium-transparent.png" alt="RKJ logo" class="rkj-logo">
 					<p>
 
 						Jrta je podporni kamen v oknu ali vratih (podboj) v kraški arhitekturi. Izklesana je iz apnenca, kamenine, ki je značilna za našo pokrajino. V našem imenu in grbu jo najdemo kot simbol trdnosti in zanesljivosti. Sestavlja okno, ki nam predstavlja odprtost in usmerjenost ven in v prihodnost. Hkrati je okno trdno vzidano v kamniti zid, ki predstavlja ukoreninjenost in sožitje z domačimi kraji.
@@ -95,7 +95,7 @@
 						Napis v grbu je živahne oranžne barve, le eden od odtenkov v katere se jeseni obleče naša gmajna z rujevimi grmiči. Predstavlja mladost in veselje do življenja.
 					</p>
 					<p class="right-align">
-						<a class="waves-effect waves-light btn" href="https://static.rkjsezana.app/img/logo-2018-06-03.png" target="_blank">Logo v .png</a>
+						<a class="waves-effect waves-light btn" href="https://rkjsezana.app/src/2018-08-12/rkj-logo-medium-transparent.png" target="_blank">Logo v .png</a>
 						<a class="waves-effect waves-light btn" href="http://www.rkjsezana.si/pdf/RKJ%20logo.pdf" target="_blank">Logo v .pdf</a>
 					</p>
 				</div>
@@ -129,6 +129,7 @@
 		font-size: 24px;
 	}
 	.cardcontent img.rkj-logo {
+		margin-left: 15px;
 		float: right;
 		height: 150px;
 		width: auto;

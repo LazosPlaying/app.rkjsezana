@@ -35,6 +35,6 @@ if (!file_exists(__DIR__.'/settings.nogit.php')){
 	if (file_exists(__DIR__.'/settings.yesgit.php')){
 		die('Settings.nogit.php does not exist, but you do have settings.yesgit.php. Please edit the settings.yesgit.php and rename it to settings.nogit.php');
 	} else {
-		die('Settings.nogit.php is missing, but it seems like you do not have settings.yesgit.php either. Please, get the settings.yesgit.php template from our GitHub repository, put it in /inc/util/ folder, edit it and rename it to settings.nogit.php.');
+		die('Settings.nogit.php is missing, but it seems like you do not have settings.yesgit.php either. Please, get the settings.yesgit.php template from out GitHub repository, put it in /inc/util/ folder, edit it and rename it to settings.nogit.php.');
 	}
 }

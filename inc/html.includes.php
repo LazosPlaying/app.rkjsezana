@@ -7,25 +7,25 @@ class includes{
 		<meta charset="utf-8">
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<link rel="apple-touch-icon" href="https://static.rkjsezana.app/img/favicon4.ico">
-		<link rel="icon" href="https://static.rkjsezana.app/img/favicon4.ico">
+		<link rel="apple-touch-icon" href="https://rkjsezana.app/src/2018-08-12/favicon4.ico">
+		<link rel="icon" href="https://rkjsezana.app/src/2018-08-12/favicon4.ico">
 
 		<!-- META FOR SHARING -->
 		<meta property="og:site_name" content="rkjsezana.app">
 		<meta property="og:title" content="rkjsezana.app - Spletna aplikacija za RKJ Sežana">
 		<meta property="og:description" content="RKJSEZANA.APP je spletna aplikacija namenjena vodstvu, članom ter staršem članov RKJ Sežana za uspešno in hitro medsebojno obveščanje.">
-		<meta property="og:image" content="https://static.rkjsezana.app/img/logo-2018-06-03.png?1">
+		<meta property="og:image" content="https://rkjsezana.app/src/2018-08-12/rkj-logo-medium-transparent.png">
 		<meta property="og:url" content="https://rkjsezana.app">
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="sl_SI" />
 		<meta property="og:locale:alternate" content="en_GB" />
 
 		<!-- MAIN CSS LIBRARIES -->
-		<link type="text/css" rel="stylesheet" href="https://static.rkjsezana.app/libs/materializecss-v1.0.0-beta/css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="https://static.aljaxus.eu/lib/materializecss/materializecss-v1.0.0-beta/css/materialize.min.css"  media="screen,projection"/>
 
 		<!-- MAIN JAVASCRIPT LIBRARIES -->
-		<script type="text/javascript" src="https://static.rkjsezana.app/libs/jquery-3.3.1/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="https://static.rkjsezana.app/libs/materializecss-v1.0.0-beta/js/materialize.min.js"></script>
+		<script type="text/javascript" src="https://static.aljaxus.eu/lib/jquery/jquery-3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://static.aljaxus.eu/lib/materializecss/materializecss-v1.0.0-beta/js/materialize.min.js"></script>
 
 		<!-- FONT LIBRARIES -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -45,13 +45,12 @@ class includes{
 		echo '
 		<!-- PLUGINS -->
 		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
-		<script src="https://static.rkjsezana.app/libs/textareaAutoHeight/jquery.autoheight.js"></script>
-		<script src="https://static.rkjsezana.app/libs/js-cookie/js-cookie-v2.2.0.js"></script>
-		<script src="https://static.rkjsezana.app/libs/prettyDatejQuery/prettydate.js"></script>
-		<script src="https://static.rkjsezana.app/libs/pushjs.org/push.min.js"></script>
+		<script src="https://static.aljaxus.eu/lib/js-cookie/js-cookie-v2.2.0.js"></script>
+		<script src="https://static.aljaxus.eu/lib/jquery-prettydate/prettydate.js"></script>
+		<script src="https://static.aljaxus.eu/lib/pushjs.org/pushjs-2018-08-13/push.min.js"></script>
 
-		<script src="https://static.rkjsezana.app/libs/highlightjs/highlight.pack.js"></script>
-		<link href="https://static.rkjsezana.app/libs/highlightjs/styles/atom-one-dark.css" rel="stylesheet">
+		<script src="https://static.aljaxus.eu/lib/jquery-highlightjs/highlightjs-2018-06-08/highlight.pack.js"></script>
+		<link href="https://static.aljaxus.eu/lib/jquery-highlightjs/highlightjs-2018-06-08/styles/atom-one-dark.css" rel="stylesheet">
 		';
 		$this->googleAnalytics();
 
