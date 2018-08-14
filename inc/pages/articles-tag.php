@@ -20,6 +20,7 @@ $(document).ready(function() {
 	loadArticles("<?php echo $_GET['par2'] ?>");
 });
 function loadArticles(tag = "", page = 1, limit = 6 ) {
+	document.title='Objave z oznako "'+tag+'" - RKJ Sežana';
 	$.post(
 		'/api/get/articles',
 		{
@@ -33,10 +34,10 @@ function loadArticles(tag = "", page = 1, limit = 6 ) {
 	).done(function( data ) {
 		console.log("***************************************************");
 		console.log("Articles - success");
-		console.log(data.data.info);
-		console.log(data.data.articles);
+		console.log(data);
 		{
 			let dat = data.data.articles;
+			let datinfo = data.data.info;
 			let maindiv = $('#maincard');
 			maindiv.html('');
 
@@ -91,6 +92,11 @@ function loadArticles(tag = "", page = 1, limit = 6 ) {
 				console.log(['Article id: '+el.id, el, loopDat]);
 				maindiv.append(content);
 			});
+			if (datinfo.success.query == true, datinfo.success.fetch == false){
+				maindiv.append('<center><h4>Napaka!</h4><h5>Ni nam uspelo najti objav(-e) s tako oznako.</h5></center>');
+			} else if (datinfo.success.query == false, datinfo.success.fetch == false) {
+				maindiv.append('<center><h4>Napaka!</h4><h5>Prišlo je do nepričakovane napake na naši strani. Prosimo, da nas opozorite preko <a href="mailto:aljaxus.dev@gmail.com">emaila</a> (omenite tudi trenutni čas).</h5></center>');
+			}
 		}
 		$(".article-prettytime").prettydate({
 			afterSuffix: "pozneje",

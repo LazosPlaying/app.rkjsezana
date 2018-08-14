@@ -12,7 +12,7 @@
 */
 body {
 	opacity: 0;
-    transition: opacity .3s;
+    transition: opacity .8s;
 }
 #loader-wrapper {
     position: fixed;

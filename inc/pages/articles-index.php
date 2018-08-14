@@ -1,6 +1,11 @@
 <div class="card">
 	<div class="card-content" id="maincard">
-
+		<center>
+			<h5>Loading . . .</h5>
+			<div class="progress">
+	      		<div class="indeterminate"></div>
+		  	</div>
+		</center>
 	</div>
 </div>
 <script type="text/javascript">
@@ -36,6 +41,7 @@ function loadArticles(id) {
 		{
 			let dat = data.data.articles;
 			let maindiv = $('#maincard');
+			maindiv.html('');
 
 			dat.forEach(function(el) {
 				let loopDat = [];

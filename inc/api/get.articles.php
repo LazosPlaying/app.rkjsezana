@@ -179,7 +179,6 @@ $data = array(
 
 			} else {
 				$data['info']['success']['fetch'] = false;
-				$data['info']['success']['query'] = false;
 			}
 			if ( $stmt = $stmt = $conn->prepare("SELECT `article_id` FROM `articles`  ORDER BY `article_id`;") ){
 
@@ -196,6 +195,7 @@ $data = array(
 				}
 			}
 		} else {
+			$data['info']['success']['fetch'] = false;
 			$data['info']['success']['query'] = false;
 		}
 
@@ -235,7 +235,6 @@ $data = array(
 
 			} else {
 				$data['info']['success']['fetch'] = false;
-				$data['info']['success']['query'] = false;
 			}
 			if ( $stmt = $conn->prepare("SHOW TABLE STATUS WHERE name=?;") ){
 
@@ -254,6 +253,7 @@ $data = array(
 				}
 			}
 		} else {
+			$data['info']['success']['fetch'] = false;
 			$data['info']['success']['query'] = false;
 		}
 

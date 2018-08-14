@@ -44,7 +44,7 @@
                                     <td>materializecss</td>
                                     <td>css, javascript</td>
                                     <td>https://materializecss.com</td>
-                                    <td>https://static.rkjsezana.app/libs/materializecss-v1.0.0-beta/</td>
+                                    <td>https://static.aljaxus.eu/lib/materializecss/materializecss-v1.0.0-beta/</td>
                                     <td>https://materializecss.com/getting-started.html</td>
                                 </tr>
                                 <tr>
@@ -72,14 +72,14 @@
                                     <td>jsCookie</td>
                                     <td>javascript</td>
                                     <td>https://github.com/js-cookie/js-cookie</td>
-                                    <td>https://static.rkjsezana.app/libs/js-cookie/js-cookie-v2.2.0.js</td>
+                                    <td>https://static.aljaxus.eu/lib/js-cookie/js-cookie-v2.2.0.js</td>
                                     <td>https://github.com/js-cookie/js-cookie</td>
                                 </tr>
                                 <tr>
                                     <td>jQuery</td>
                                     <td>javascript</td>
                                     <td>http://jquery.com/download/</td>
-                                    <td>https://static.rkjsezana.app/libs/jquery-3.3.1/jquery-3.3.1.min.js</td>
+                                    <td>https://static.aljaxus.eu/lib/jquery/jquery-3.3.1/jquery.min.js</td>
                                     <td>http://api.jquery.com/</td>
                                 </tr>
                                 <tr>
@@ -93,21 +93,21 @@
                                     <td>highlightJs</td>
                                     <td>javascript, css</td>
                                     <td>https://highlightjs.org/download/</td>
-                                    <td>https://static.rkjsezana.app/libs/highlightjs/</td>
+                                    <td>https://static.aljaxus.eu/lib/jquery-highlightjs/highlightjs-2018-06-08/</td>
                                     <td>http://highlightjs.readthedocs.io/en/latest/index.html</td>
                                 </tr>
                                 <tr>
                                     <td>prettyDate</td>
                                     <td>javascript</td>
                                     <td>https://github.com/fengyuanchen/prettydate</td>
-                                    <td>https://static.rkjsezana.app/libs/prettyDatejQuery/</td>
+                                    <td>https://static.aljaxus.eu/lib/jquery-prettydate/prettydate.js</td>
                                     <td>http://fengyuanchen.github.io/prettydate/</td>
                                 </tr>
                                 <tr>
                                     <td>push js</td>
                                     <td>javascript</td>
                                     <td>https://github.com/Nickersoft/push.js</td>
-                                    <td>https://static.rkjsezana.app/libs/pushjs.org/</td>
+                                    <td>https://static.aljaxus.eu/lib/pushjs.org/pushjs-2018-08-13/</td>
                                     <td>https://pushjs.org/docs/introduction</td>
                                 </tr>
                             </tbody>
@@ -149,6 +149,11 @@
 									<td>Regex101</td>
                                     <td>Creating, testing and validating regex rules</td>
                                     <td>https://regex101.com</td>
+                                </tr>
+                                <tr>
+									<td>LIpsum</td>
+                                    <td>Creating, testing and validating regex rules</td>
+                                    <td>https://lipsum.com</td>
                                 </tr>
                             </tbody>
                         </table>

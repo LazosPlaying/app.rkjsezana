@@ -3,7 +3,12 @@
 		<div class="row" style="margin-bottom:0;">
 			<div class="left col s12 m7 l9 xl10">
 				<div class="articles">
-
+					<center>
+						<h5>Loading . . .</h5>
+						<div class="progress">
+				      		<div class="indeterminate"></div>
+					  	</div>
+					</center>
 				</div>
 			</div>
 			<div class="right col s12 m5 l3 xl2">
@@ -70,6 +75,7 @@ function loadArticles(page = 1, limit = 6) {
 		{
 			let dat = data.data.articles;
 			let maindiv = $('.left').find('.articles');
+			maindiv.html('');
 
 			dat.forEach(function(el) {
 				let loopDat = [];
