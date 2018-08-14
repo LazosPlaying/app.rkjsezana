@@ -2,12 +2,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/phpmailer/Exception.php';
-require __DIR__ . '/phpmailer/PHPMailer.php';
-require __DIR__ . '/phpmailer/SMTP.php';
+require_once __DIR__ . '/phpmailer/Exception.php';
+require_once __DIR__ . '/phpmailer/PHPMailer.php';
+require_once __DIR__ . '/phpmailer/SMTP.php';
 require_once __DIR__ . '/settings.nogit.php';
 
-class mail extends settingPHPMailer {
+class mail extends settingsPHPMailer {
+
 	public function send($data){
 		if (
 			isset($data) &&
@@ -31,12 +32,12 @@ class mail extends settingPHPMailer {
 				//Server settings
 				$mail->SMTPDebug = 0;                                 					// Enable verbose debug output
 				$mail->isSMTP();                                      					// Set mailer to use SMTP
-				$mail->Host = $mailHost;  												// Specify main and backup SMTP servers									From settings.nogit.php
-				$mail->SMTPAuth = $mailSMTPAuth;                               			// Enable SMTP authentication											From settings.nogit.php
-				$mail->Username = $mailUsername;                 						// SMTP username														From settings.nogit.php
-				$mail->Password = $mailPassword;      									// SMTP password														From settings.nogit.php
-				$mail->SMTPSecure = $mailSMTPSecure;                           			// Enable TLS encryption, `ssl` also accepted							From settings.nogit.php
-				$mail->Port = $mailPort;                                    			// TCP port to connect to												From settings.nogit.php
+				$mail->Host = $this->mailHost;  										// Specify main and backup SMTP servers									From settings.nogit.php
+				$mail->SMTPAuth = $this->mailSMTPAuth;                               	// Enable SMTP authentication											From settings.nogit.php
+				$mail->Username = $this->mailUsername;                 				// SMTP username														From settings.nogit.php
+				$mail->Password = $this->mailPassword;      							// SMTP password														From settings.nogit.php
+				$mail->SMTPSecure = $this->mailSMTPSecure;                           	// Enable TLS encryption, `ssl` also accepted							From settings.nogit.php
+				$mail->Port = $this->mailPort;                                    		// TCP port to connect to												From settings.nogit.php
 				$mail->CharSet = 'UTF-8';
 
 				//Recipients

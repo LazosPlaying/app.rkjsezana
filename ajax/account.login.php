@@ -73,11 +73,12 @@ if ( !isset($_SESSION['u_id']) ){
 				$uid = $_POST['uid'];
 				$pwd = $_POST['pwd'];
 
-				$loginsarr = array(
-					'login_time' => time(),
-					'login_ip' => $ipUtil->getIpAddress(),
-					'login_user_id' => null,
-					'login_state' => null
+				$actionArr = array(
+					'action_name' => 'user_login',
+					'action_time' => time(),
+					'action_user_id' => null,
+					'action_user_ip' => $ipUtil->getIpAddress(),
+					'action_is_success' => null
 				);
 				if ( $stmt = $conn->prepare("SELECT `user_id`, `user_uid`, `user_first`, `user_last`, `user_email`, `user_groups`, `user_pwd` FROM `users` WHERE user_uid = ?") ){
 
@@ -91,9 +92,10 @@ if ( !isset($_SESSION['u_id']) ){
 						if ( password_verify($pwd, $u_pwd) ){
 
 
-							$loginsarr['login_user_id'] = $u_id;
-							$loginsarr['login_state'] = 1;
-							if ( $dbutil->insert($loginsarr, 'users_logins') ){
+							$actionArr['action_user_id'] = $u_id;
+							$actionArr['action_is_success'] = 1;
+							$temp1 = $dbutil->insert($actionArr, 'users_actions');
+							if ( $temp1['is_success'] ){
 								$statusArr['is_success']['dbinsert_loginlog'] = true;
 
 								$_SESSION['u_id'] = $u_id;
@@ -109,13 +111,19 @@ if ( !isset($_SESSION['u_id']) ){
 							} else {
 								// 500
 								// Prepared statement failed
-								die ($ajaxUtil->arrayToJson(array('error'=>'prepared statement failed at user.login.php -> ifIsUser() -> statement->prepare ! Prosimo obvestite administratorja.'),500));
+								die ($ajaxUtil->arrayToJson(array('error'=>'prepared statement failed at user.login.php -> ifIsUser() -> statement->prepare ! Prosimo obvestite administratorja.', 'errorValue'=> $temp1['message']),500));
 							}
 
 						} else {
-							$loginsarr['login_user_id'] = $u_id;
-							$loginsarr['login_state'] = 0;
-							$dbutil->insert($loginsarr, 'users_logins');
+							$actionArr['action_user_id'] = $u_id;
+							$actionArr['action_is_success'] = 0;
+
+							$temp1 = $dbutil->insert($actionArr, 'users_actions');
+							if ( !$temp1['is_success'] ){
+								// 500
+								// Prepared statement failed
+								die ($ajaxUtil->arrayToJson(array('error'=>'prepared statement failed at user.login.php -> ifIsUser() -> statement->prepare ! Prosimo obvestite administratorja.', 'errorValue'=> $temp1['message']),500));
+							}
 
 							$statusArr['is_correct']['credentials'] = false;
 						}

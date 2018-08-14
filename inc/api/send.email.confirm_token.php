@@ -12,11 +12,19 @@ $statusData['data'] = array(
 
 	)
 );
-$temp1 = 'confirm_email';
-$temp2 = $_SESSION['u_id'];
 
 if ($statusData['isset']['session']){
 	$statusData['data']['allowed'] = true;
+
+	$temp1 = 'confirm_email';
+	$temp2 = $_SESSION['u_id'];
+	$actionArr = array(
+		'action_name' => 'user_send_email_confirm_token',
+		'action_time' => time(),
+		'action_user_id' => $temp2,
+		'action_user_ip' => $ipUtil->getIpAddress(),
+		'action_is_success' => null
+	);
 
 	{
 		$conn = $connUtil->oopmysqli();
@@ -58,7 +66,7 @@ if ($statusData['isset']['session']){
 					}
 
 					if ($usr['proceed']){
-						$emailhtml = '<p>Pozdravljeni '.$usr['uid'].'! Ta email ste prejeli za potrditev računa na storitvi rkjsezana.app <br><br> Osebni žeton: '.$token_token.' <br><br> Za potrditev računa sledite <a href="https://rkjsezana.app/user/confirmation?token='.$token_token.'">povezavi</a> ( https://rkjsezana.app/user/confirmation ). Ko je stran popolnoma naložena vpišite vaš žeton v vpisno polje (če še ni sam vpisan) ter kliknite na gumb z besedilom "AKTIVACIJA".';
+						$emailhtml = '<p>Pozdravljeni '.$usr['uid'].'! Ta email ste prejeli za potrditev email naslova za Vaš račun na storitvi rkjsezana.app <br><br> Osebni žeton: '.$token_token.' <br><br> Za hitro potrditev email naslova  kliknite <a href="https://rkjsezana.app/action/user.email.confirm.php?token='.$token_token.'">tukaj</a>.<br><br> Email naslov pa lahko tudi manualno potrdite na sledeči povezavi https://rkjsezana.app/account/confirm-email - Ko je stran popolnoma naložena vpišite vaš žeton v vpisno polje ter kliknite na gumb z besedilom "AKTIVACIJA".';
 						$tempArr = array(
 							'from' => array(
 								'name' => 'rkjsezana.app',
@@ -70,7 +78,7 @@ if ($statusData['isset']['session']){
 							),
 							'content' => array(
 								'title' => 'Potrditev email naslova',
-								'subject' => 'Potrditev email naslova za račun '.$_POST['uid'].' na storitvi rkjsezana.app',
+								'subject' => 'Potrditev email naslova za račun '.$_SESSION['u_uid'].' na storitvi rkjsezana.app',
 								'html' => $emailhtml,
 								'nohtml' => strip_tags($emailhtml)
 							)
@@ -78,13 +86,25 @@ if ($statusData['isset']['session']){
 						$temp1 = $mailUtil->send($tempArr);
 						if ($temp1['is_success'] == true) {
 							$statusData['data']['is']['sent'] = true;
+							$actionArr['action_is_success'] = 1;
 						} else {
 							// 500
 							// Email was not sent
 							// Error: $temp1['message']
+							// ActionLog - not success
 							$statusData['data']['is']['sent'] = false;
 							$statusData['data']['messages']['email'] = $temp1['message'];
+							$actionArr['action_is_success'] = 0;
 						}
+
+						$temp1 = $dbUtil->insert($actionArr, 'users_actions');
+						if ($temp1['is_success']==true){
+							$statusArr['data']['is']['db_insertlog'] = true;
+						} else {
+							$statusArr['data']['is']['db_insertlog'] = false;
+							$statusData['data']['messages']['dblogError'] = $temp1['message'];
+						}
+
 					} else {
 						// $usr['proceed'] === false
 						$statusData['data']['messages']['proceed'] = '$usr[\'proceed\'] === false';

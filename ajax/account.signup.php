@@ -210,7 +210,7 @@ $statusArr = array(
 						$temp1 = $tokenUtil->create($u_id,'confirm_email');
 						if ( $temp1['is_success'] === true ){
 							$statusArr['is_success']['dbinsert_token'] = true;
-							$emailhtml = '<p>Pozdravljeni! Ta email ste prejeli kot potrdilo o registraciji novega računa "'.$_POST['uid'].'" na storitvi rkjsezana.app <br><br> Osebni žeton: '.$temp1['token'].' <br><br> Za potrditev računa sledite <a href="https://rkjsezana.app/session/confirm-email?token='.$temp1['token'].'">povezavi</a> ( https://rkjsezana.app/session/confirm-email ).';
+							$emailhtml = '<p>Pozdravljeni! Ta email ste prejeli kot potrdilo o registraciji novega računa "'.$_POST['uid'].'" ter za potrditev email naslova za Vaš račun na storitvi rkjsezana.app <br><br> Osebni žeton: '.$temp1['token'].' <br><br> Za hitro potrditev računa kliknite <a href="https://rkjsezana.app/action/user.email.confirm.php?token='.$temp1['token'].'">tukaj</a>.<br><br> Email naslov pa lahko tudi manualno potrdite na sledeči povezavi https://rkjsezana.app/account/confirm-email - Ko je stran popolnoma naložena vpišite vaš žeton v vpisno polje ter kliknite na gumb z besedilom "AKTIVACIJA".';
 							$tempArr = array(
 								'from' => array(
 									'name' => 'rkjsezana.app',

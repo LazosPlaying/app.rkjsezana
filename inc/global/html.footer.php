@@ -29,7 +29,7 @@
     		<span class="right">
 				<a class="grey-text text-lighten-4 btn btn-flat btn-small waves-effect" target="_blank" href="https://aljaxus.eu"><i class="fas fa-code"></i> Aljaž Starc</a>
 				<a class="red-text text-darken-1 btn btn-flat btn-small waves-effect" href="mailto:aljaxus.dev@gmail.com" title="Pošlji informacije na e-mail"><i class="fas fa-envelope fa-lg"></i></a>
-				<a class="grey-text text-darken-4 btn btn-flat btn-small waves-effect" target="_blank" href="https://github.com/LazosPlaying/rkjsezana.app/issues/new/choose" title="Podaj informacije preko GitHub-a"><i class="fab fa-github fa-lg"></i></a>
+				<a class="grey-text text-darken-4 btn btn-flat btn-small waves-effect" target="_blank" href="https://github.com/LazosPlaying/app.rkjsezana" title="Podaj informacije preko GitHub-a"><i class="fab fa-github fa-lg"></i></a>
 			</span>
     	</div>
   	</div>

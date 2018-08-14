@@ -48,6 +48,14 @@ $('#sendSignupEmail').on('click', function(event) {
     	console.log( "resend email - process finished" );
   	});
 });
+
+$('#confirm-btn').click(function() {
+
+	
+
+});
+
+
 $(document).ready(function() {
 {
 	function getAllUrlParams(url) {

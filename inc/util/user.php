@@ -16,6 +16,7 @@ class user {
 			return false;
 		}
 	}
+	
 	public function getSessionStatus(){
 		global $dbUtil;
 		global $connUtil;
@@ -35,6 +36,7 @@ class user {
  			return 'nosession';
 		}
 	}
+
 	public function userDataById($id = 'fallback'){
 		global $dbUtil;
 		global $connUtil;
@@ -66,7 +68,9 @@ class user {
 			die('<script>alert("Error; prepared statement failed at util.users.php -> userDataById() -> statement->prepare ! Prosimo obvestite administratorja.");</script>');
 		}
 	}
+
 }
+
 class getUserIp{
 	/**
 	* Whether to use proxy addresses or not.

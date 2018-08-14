@@ -5,6 +5,7 @@ require_once __DIR__ . '/inc/util/array.php';
 require_once __DIR__ . '/inc/util/database.php';
 require_once __DIR__ . '/inc/util/mail.php';
 $userUtil = new user();
+$ipUtil = new getUserIp();
 $dbUtil = new dbManipulate();
 $connUtil = new dbconn();
 $mailUtil = new mail();
