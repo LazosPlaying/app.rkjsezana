@@ -42,8 +42,17 @@ if ($userUtil->getSessionStatus() == 'valid'){
 		<?php
 
 			{
-				if (isset($_GET['id'])&&!empty($_GET['id'])){
-					include_once __DIR__ . '/inc/pages/article-index.php';
+				if (isset($_GET['par1'])&&!empty($_GET['par1'])){
+					$path = __DIR__ . '/inc/pages/articles-'.$_GET['par1'].'.php';
+					if (file_exists($path)){
+						echo '<script>document.title="'.$_GET['par1'].' - RKJ Sežana";</script>';
+						include_once $path;
+					} else {
+						echo '<script>document.title="Stran ne obstaja - '.$_GET['par1'].' - RKJ Sežana";</script>';
+						include_once __DIR__ . '/inc/pages/error.php';
+					}
+				} elseif (isset($_GET['id'])&&!empty($_GET['id'])){
+					include_once __DIR__ . '/inc/pages/articles-index.php';
 				} else {
 					echo '<script>window.location.replace("/");</script>';
 				}

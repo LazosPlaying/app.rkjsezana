@@ -1,3 +1,12 @@
+<div class="card">
+	<div class="card-content" id="maincard">
+
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	loadArticles(<?php echo $_GET['id']; ?>);
+});
 /*   ___       __             __       ___      ___   ___  __    __       _______.    _______  __    __
     /   \     |  |           |  |     /   \     \  \ /  / |  |  |  |     /       |   |   ____||  |  |  |
    /  ^  \    |  |           |  |    /  ^  \     \  V  /  |  |  |  |    |   (----`   |  |__   |  |  |  |
@@ -53,7 +62,7 @@ function loadArticles(id) {
 				{
 					{
 						// Generate acticle URL && replace invalid characters in article title
-						loopDat.link = 'https://rkjsezana.app/article/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
+						loopDat.link = 'https://rkjsezana.app/articles/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
 					{
@@ -79,7 +88,7 @@ function loadArticles(id) {
 							content += '</div>';
 							content += '<div class="article-tags">';
 								el.tags.forEach(function(tag){
-									content += '<span class="new badge" data-badge-caption="">'+tag+'</span>';
+									content += '<a href="/articles/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
 								});
 							content += '</div>';
 						content += '</div>';
@@ -131,3 +140,47 @@ function loadArticles(id) {
 
 	});
 }
+</script>
+<style media="all">
+/*   ___       __             __       ___      ___   ___  __    __       _______.    _______  __    __
+    /   \     |  |           |  |     /   \     \  \ /  / |  |  |  |     /       |   |   ____||  |  |  |
+   /  ^  \    |  |           |  |    /  ^  \     \  V  /  |  |  |  |    |   (----`   |  |__   |  |  |  |
+  /  /_\  \   |  |     .--.  |  |   /  /_\  \     >   <   |  |  |  |     \   \       |   __|  |  |  |  |
+ /  _____  \  |  `----.|  `--'  |  /  _____  \   /  .  \  |  `--'  | .----)   |    __|  |____ |  `--'  |
+/__/     \__\ |_______| \______/  /__/     \__\ /__/ \__\  \______/  |_______/    (__)_______| \______/
+*/
+.article {
+  	box-shadow: 3px 15px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
+  	border-radius: 3px;
+  	margin-top: 15px;
+  	background: #fff;
+  	color: #444;
+  	padding: 10px;
+  	position: relative;
+}
+.article > .article-header {
+	display: flow-root;
+	border-bottom: 1px solid #f4f4f4;
+	margin: 5px 0;
+}
+.article > .article-header > .article-time {
+  	color: #999;
+  	padding: 10px;
+  	font-size: 12px;
+	float: right;
+    max-width: 50%;
+}
+.article > .article-header > .article-title {
+ 	color: #555;
+ 	padding: 10px;
+ 	font-size: 20px;
+ 	line-height: 1.1;
+	font-weight: bold;
+}
+.article > .article-post > .article-tags {
+	text-align: right;
+}
+.article > .article-post > .article-tags span.badge {
+	float: none;
+}
+</style>

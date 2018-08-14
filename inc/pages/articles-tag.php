@@ -1,15 +1,29 @@
+<?php if (isset($_GET['par2']) && !empty($_GET['par2'])) { ?>
+
+<div class="card">
+	<div class="card-content articles" id="maincard">
+		<center>
+			<h5>Loading . . .</h5>
+			<div class="progress">
+	      		<div class="indeterminate"></div>
+		  	</div>
+		</center>
+	</div>
+</div>
+<script type="text/javascript">
 /*
 ///////////////////////////////////////////////////////////
 ///////////////////// ARTICLES LOADER /////////////////////
 ///////////////////////////////////////////////////////////
 */
 $(document).ready(function() {
-	loadArticles();
+	loadArticles("<?php echo $_GET['par2'] ?>");
 });
-function loadArticles(page = 1, limit = 6) {
+function loadArticles(tag = "", page = 1, limit = 6 ) {
 	$.post(
 		'/api/get/articles',
 		{
+			bytag: tag,
 			page: page,
 			limit: limit
 		},
@@ -23,7 +37,8 @@ function loadArticles(page = 1, limit = 6) {
 		console.log(data.data.articles);
 		{
 			let dat = data.data.articles;
-			let maindiv = $('.left').find('.articles');
+			let maindiv = $('#maincard');
+			maindiv.html('');
 
 			dat.forEach(function(el) {
 				let loopDat = [];
@@ -48,7 +63,7 @@ function loadArticles(page = 1, limit = 6) {
 
 				{
 					{
-						loopDat.link = 'https://rkjsezana.app/article/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
+						loopDat.link = 'https://rkjsezana.app/articles/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
 
@@ -66,7 +81,7 @@ function loadArticles(page = 1, limit = 6) {
 							content += '</div>';
 							content += '<div class="article-tags">';
 								el.tags.forEach(function(tag){
-									content += '<span class="new badge" data-badge-caption="">'+tag+'</span>';
+									content += '<a href="/articles/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
 								});
 							content += '</div>';
 						content += '</div>';
@@ -114,3 +129,46 @@ function loadArticles(page = 1, limit = 6) {
 
 	});
 }
+
+</script>
+<style media="all">
+.articles {
+
+}
+
+.articles > .article {
+  	box-shadow: 3px 15px 15px rgba(0, 0, 0, 0.1), 0 0 15px rgba(0, 0, 0, 0.1);
+  	border-radius: 3px;
+  	margin-top: 15px;
+  	background: #fff;
+  	color: #444;
+  	padding: 10px;
+  	position: relative;
+}
+.articles > .article > .article-header {
+	display: flow-root;
+	border-bottom: 1px solid #f4f4f4;
+	margin: 5px 0;
+}
+.articles > .article > .article-header > .article-time {
+  	color: #999;
+  	padding: 10px;
+  	font-size: 12px;
+	float: right;
+    max-width: 50%;
+}
+.articles > .article > .article-header > .article-title {
+ 	color: #555;
+ 	padding: 10px;
+ 	font-size: 16px;
+ 	line-height: 1.1;
+	font-weight: bold;
+}
+.articles > .article > .article-post > .article-tags {
+	text-align: right;
+}
+.articles > .article > .article-post > .article-tags span.badge {
+	float: none;
+}
+</style>
+<?php } else { require __DIR__ . '/error.php'; } ?>

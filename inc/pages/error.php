@@ -19,7 +19,7 @@
   				<div class="collapsible-body canSelectText">
 					<span>Vsekakor je kakršno koli posredovanje informacij ter idej vedno zaželjeno, zato prosimo, da če le lahko, posredujete čim več informacij na sledeče kontakte: </span>
 					<br><a href="mailto:aljaxus.dev@gmail.com" class="red-text text-lighten-1"><i class="fas fa-envelope"></i> Email: aljaxus.dev@gmail.com</a>
-					<br><a href="https://github.com/LazosPlaying/rkjsezana.app/issues/new/choose" class="grey-text text-darken-4" target="_blank"><i class="fab fa-github"></i> GitHub: /LazosPlaying/rkjsezana.app</a>
+					<br><a href="https://github.com/LazosPlaying/rkjsezana.app" class="grey-text text-darken-4" target="_blank"><i class="fab fa-github"></i> GitHub: /LazosPlaying/rkjsezana.app</a>
 					<br><a href="javascript:void(0);" onClick="copyToClipboard('LazosPlaying#9695');" class="indigo-text text-lighten-1"><i class="fab fa-discord"></i> Discord: LazosPlaying#9695</a>
 				</div>
 			</li>
