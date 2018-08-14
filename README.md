@@ -1,4 +1,97 @@
 # rkjsezana.app
 [rkjsezana.app](https://rkjsezana.app) is a web application made for a Slovenian scouts group.
 
-This repository is only used for issue reporting.
+
+```
+server {
+      	listen    	80;
+      	listen	  	443;
+
+      	ssl    		on;
+      	ssl_certificate        	/path/to/origin.crt;
+      	ssl_certificate_key   	/path/to/private.key;
+
+		server_name rkjsezana.app;
+
+		access_log     /path/to/app.rkjsezana.access.log;
+        error_log      /path/to/app.rkjsezana.error.log;
+
+		root /path/to/app.rkjsezana;
+
+		index index.php;
+
+        location /src {
+            allow all;
+
+            autoindex on;
+
+			access_log off;
+			error_log off;
+
+			add_header Cache-Control 'public';
+	    	try_files $uri $uri/ =404;
+		}
+
+		location ~ (/(inc|uploads))|(noaccess) {
+            deny all;
+			rewrite ^ https://rkjsezana.app redirect;
+			return 403;
+        }
+
+        location ~ /externals {
+			add_header Cache-Control 'no-store, no-cache, must-revalidate, max-age=0';
+			add_header Cache-Control 'post-check=0, pre-check=0';
+			add_header Pragma 'no-cache';
+			autoindex on;
+        }
+
+		location / {
+
+			rewrite /favicon.ico /src/2018-08-12/favicon4.ico last;
+
+            try_files $uri $uri/ @extensionless-php;
+
+			rewrite ^\/session(\/)?$ /account/login redirect;
+			rewrite ^\/session\/(.*)$ /account/$1 redirect;
+
+			rewrite ^\/account(\/)?$ /account/login redirect;
+            rewrite ^\/account\/([^\/?]*)\/([^\/?]*)((\/|\?).*)?$ /account.php?area=account&par1=$1&par2=$2 last;
+			rewrite ^\/account\/([^\/?]*)((\/|\?).*)?$ /account.php?area=account&par1=$1 last;
+
+			rewrite ^\/profile\/([a-zA-Z0-9]*)\.([0-9]*)([^\s\?]*)?$ /profile.php?area=profile&par1=$1&par2=$2 last;
+
+			rewrite "^\/article\/(.*)\.([0-9]{1,9})(.*)?$" /article.php?area=article&title=$1&id=$2 last;
+
+            rewrite ^\/user\/([^\/?]*)\/([^\/?]*)((\/|\?).*)?$ /user.php?area=user&par1=$1&par2=$2 last;
+			rewrite ^\/user\/([^\/?]*)((\/|\?).*)?$ /user.php?area=user&par1=$1 last;
+
+            rewrite ^\/admin\/([^\/?]*)\/([^\/?]*)((\/|\?).*)?$ /admin.php?area=admin&par1=$1&par2=$2 last;
+			rewrite ^\/admin\/([^\/?]*)((\/|\?).*)?$ /admin.php?area=admin&par1=$1 last;
+
+            rewrite ^\/dev\/([^\/?]*)\/([^\/?]*)((\/|\?).*)?$ /dev.php?area=dev&par1=$1&par2=$2 last;
+			rewrite ^\/dev\/([^\/?]*)((\/|\?).*)?$ /dev.php?area=dev&par1=$1 last;
+
+            rewrite ^\/api\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)(\/|\?)?(.*)?$ /api.php?area=api&par1=$1&par2=$2&par3=$3&par4=$4&par5=$5 last;
+            rewrite ^\/api\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)(\/|\?)?(.*)?$ /api.php?area=api&par1=$1&par2=$2&par3=$3&par4=$4 last;
+            rewrite ^\/api\/([^\/?]*)\/([^\/?]*)\/([^\/?]*)(\/|\?)?(.*)?$ /api.php?area=api&par1=$1&par2=$2&par3=$3 last;
+            rewrite ^\/api\/([^\/?]*)\/([^\/?]*)(\/|\?)?(.*)?$ /api.php?area=api&par1=$1&par2=$2 last;
+            rewrite ^\/api\/([^\/?]*)(\/|\?)?(.*)?$ /api.php?area=api&par1=$1 last;
+
+			rewrite ^\/([^\/?]*)\/([^\/?]*)(\/|\?)?(.*)?$ /index.php?area=index&par1=$1&par2=$2 last;
+			rewrite ^\/([^\/?]*)(\/|\?)?(.*)?$ /index.php?area=index&par1=$1 last;
+        }
+
+		location @extensionless-php {
+		    rewrite ^(.*)$ $1.php last;
+		}
+		location ~ \.php$ {
+			try_files $uri =404;
+			fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
+			fastcgi_index index.php;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			include fastcgi_params;
+		}
+}
+
+```
