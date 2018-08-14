@@ -90,7 +90,7 @@ $data = array(
 {
 	if ($data['info']['is_set']['byid'] === true){
 
-		if ( $stmt = $conn->prepare("SELECT `article_id`, `article_publisher_id`, `article_title`, `article_content`, `article_reactions`, `article_time`, `article_tags` FROM `articles` WHERE article_id=?") ){
+		if ( $stmt = $conn->prepare("SELECT `article_id`, `article_publisher_id`, `article_title`, `article_content`, `article_reactions`, `article_time`, `article_tags` FROM `articles` WHERE article_id=? LIMIT 1") ){
 
 			$stmt->bind_param("i", $data['info']['byid']);
 			$stmt->execute();

@@ -48,8 +48,7 @@ function loadArticles(page = 1, limit = 6) {
 
 				{
 					{
-						loopDat.link = 'https://rkjsezana.app/article/'+el.title+'.'+el.id+'/';
-						loopDat.link = loopDat.link.replace(/\s+/g, "-");
+						loopDat.link = 'https://rkjsezana.app/article/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
 

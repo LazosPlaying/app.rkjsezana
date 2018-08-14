@@ -26,12 +26,13 @@ function loadArticles(id) {
 		console.log(data.data.articles);
 		{
 			let dat = data.data.articles;
-			let maindiv = $('.left').find('.articles');
+			let maindiv = $('#maincard');
 
 			dat.forEach(function(el) {
 				let loopDat = [];
 				let content = "";
 				{
+					// Generate date from timestamp
 					let a = date = new Date(el.time*1000);
 
 					let months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Avg','Sep','Okt','Nov','Dec'];
@@ -51,22 +52,30 @@ function loadArticles(id) {
 
 				{
 					{
-						loopDat.link = 'https://rkjsezana.app/article/'+el.title+'.'+el.id+'/';
-						loopDat.link = loopDat.link.replace(/\s+/g, "-");
+						// Generate acticle URL && replace invalid characters in article title
+						loopDat.link = 'https://rkjsezana.app/article/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
+					{
+						// If the title in URL does not match the actual title of the post with the gived ID, replace current URL with the correct one
+						let regex = /.*\/(.*)\.[0-9]*\//g;
+						let nowUrlTitle = regex.exec(window.location.href);
+						let nowTitle = el.title.replace(/\s+/g, "-");
+						if (nowUrlTitle != nowTitle){
+							window.history.replaceState(null, el.title+' - RKJ Sežana', loopDat.link);
+						}
+					}
 
 					content += '<div class="article" id="article_'+el.id+'">';
 						content += '<div class="article-header">';
 							content += '<span class="article-time"><span class="article-prettytime" timestamp="'+el.time+'">'+loopDat.timeFormat+'</span> - '+loopDat.timeNoSec+'</span>';
-							content += '<div class="article-title"><a href="'+loopDat.link+'">'+el.title+'</a></div>';
+							content += '<div class="article-title">'+el.title+'</div>';
 						content += '</div>';
 
 
 						content += '<div class="article-post">';
 							content += '<div class="article-content">';
-								el.content.length > 1000 ? content += el.content.substring(0,1000) + '...' : content += el.content;
-
+								content += el.content;
 							content += '</div>';
 							content += '<div class="article-tags">';
 								el.tags.forEach(function(tag){
@@ -77,7 +86,11 @@ function loadArticles(id) {
 					content += "</div>";
 				}
 
+				// Set title to tab that includes article title
+				window.document.title = el.title+' - RKJ Sežana';
+				// Log all data in the console
 				console.log(['Article id: '+el.id, el, loopDat]);
+				// Append the generated content to the element
 				maindiv.append(content);
 			});
 		}

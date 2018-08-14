@@ -1,5 +1,5 @@
 <div class="card">
-	<div class="card-content" id="mancard">
+	<div class="card-content" id="maincard">
 
 	</div>
 </div>
