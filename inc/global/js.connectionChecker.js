@@ -38,7 +38,7 @@
 						}
 						a = false;
 
-						
+
 					} else if (dat.session=='locked'){
 						let loc = window.location.pathname;
 						if (
@@ -48,19 +48,20 @@
 						}
 						a = false;
 
-						
+
 					} else if (dat.session=='dead'){
 						let loc = window.location.pathname;
 						if (
+							(loc!='/') &&
+							(!loc.startsWith("/articles/")) &&
 							(loc!='/account/login') &&
-							(loc!='/account/signup') &&
-							(loc!='/')
+							(loc!='/account/signup')
 						){
 							window.location.href = "/account/login";
 						}
 						a = false;
 
-						
+
 					} else {
 						a = false;
 					}
