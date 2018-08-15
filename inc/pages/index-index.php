@@ -4,7 +4,7 @@
 			<div class="left col s12 m7 l9 xl10">
 				<div class="articles">
 					<center>
-						<h5>Loading . . .</h5>
+						<h5>Nalaganje . . .</h5>
 						<div class="progress">
 				      		<div class="indeterminate"></div>
 					  	</div>

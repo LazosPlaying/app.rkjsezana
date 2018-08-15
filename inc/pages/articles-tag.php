@@ -3,7 +3,7 @@
 <div class="card">
 	<div class="card-content articles" id="maincard">
 		<center>
-			<h5>Loading . . .</h5>
+			<h5>Nalaganje . . .</h5>
 			<div class="progress">
 	      		<div class="indeterminate"></div>
 		  	</div>

@@ -18,30 +18,54 @@
 			a = true;
 		}).done(function( data ) {
 			let dat = data.data;
-			if ((dat.error == true)||(dat.error == 'true')||(dat.error == 'TRUE')){
+			if (
+				(dat.error == true) ||
+				(dat.error == 'true') ||
+				(dat.error == 'TRUE')
+			){
 				a = true;
 			} else {
-				if (dat.session=='valid'){
-					let loc = window.location.pathname;
-					if ((loc=='/account/locked')||(loc=='/account/login')||(loc=='/account/signup')){
-						window.location.href = "/";
+
+
+					if (dat.session=='valid'){
+						let loc = window.location.pathname;
+						if (
+							(loc=='/account/locked') ||
+							(loc=='/account/login') ||
+							(loc=='/account/signup')
+						){
+							window.location.href = "/";
+						}
+						a = false;
+
+						
+					} else if (dat.session=='locked'){
+						let loc = window.location.pathname;
+						if (
+							loc!='/account/locked'
+						){
+							window.location.href = "/account/locked";
+						}
+						a = false;
+
+						
+					} else if (dat.session=='dead'){
+						let loc = window.location.pathname;
+						if (
+							(loc!='/account/login') &&
+							(loc!='/account/signup') &&
+							(loc!='/')
+						){
+							window.location.href = "/account/login";
+						}
+						a = false;
+
+						
+					} else {
+						a = false;
 					}
-					a = false;
-				} else if (dat.session=='locked'){
-					let loc = window.location.pathname;
-					if (loc!='/account/locked'){
-						window.location.href = "/account/locked";
-					}
-					a = false;
-				} else if (dat.session=='dead'){
-					let loc = window.location.pathname;
-					if ((loc!='/account/login')&&(loc!='/account/signup')&&(loc!='/')){
-						window.location.href = "/account/login";
-					}
-					a = false;
-				} else {
-					a = false;
-				}
+
+
 			}
 		});
 	}, 4000);
