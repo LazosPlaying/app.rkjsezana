@@ -41,54 +41,53 @@ $(document).ready(function() {
 			navbar.html(null);
 			sidebar.html(null);
 
-			if (userdata.is_loged){
+			if (userdata.is_loged == true){
 				let sidebardata = '<li><div class="user-view">';
-				sidebardata += '<div class="background"><img src="https://share.aljaxus.eu/2018-06-17/28464122690_b861cbfd38_h-05%3A26%3A55pm.jpg" style="min-height:100%; min-width:100%; height:100%; filter:brightness(40%) blur(.5px);"></div>';
-
-				sidebardata += '<a href="#user"><img class="circle" src="https://share.aljaxus.eu/2018-06-17/profile%20image%20mirrored-120px-05%3A07%3A14pm.jpg"></a>';
-				sidebardata += '<a href="#name"><span class="white-text name">'+userdata.first+' '+userdata.last+'</span></a>';
-				sidebardata += '<a href="#email"><span class="white-text email">'+userdata.email+'</span></a>';
-
+					sidebardata += '<div class="background"><img src="https://share.aljaxus.eu/2018-06-17/28464122690_b861cbfd38_h-05%3A26%3A55pm.jpg" style="min-height:100%; min-width:100%; height:100%; filter:brightness(40%) blur(.5px);"></div>';
+					sidebardata += '<a href="#user"><img class="circle" src="https://share.aljaxus.eu/2018-06-17/profile%20image%20mirrored-120px-05%3A07%3A14pm.jpg"></a>';
+					sidebardata += '<a href="#name"><span class="white-text name">'+userdata.first+' '+userdata.last+'</span></a>';
+					sidebardata += '<a href="#email"><span class="white-text email">'+userdata.email+'</span></a>';
 				sidebardata += '</div></li>';
 				sidebar.append(sidebardata);
 			}
-			tabs.forEach(function(el) {
-				if (el.element == 'a'){
-					let target = '_top';
-					let extraClass = null;
-					if ('target' in el){
-						target = el.target;
-					}
-					if ('class' in el){
-						extraClass = ' ' + el.class;
-					}
-					navbar.append('<li><a href="'+el.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons left">'+el.icon+'</i>'+el.text+'</a></li>');
-					sidebar.append('<li><a href="'+el.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons left">'+el.icon+'</i>'+el.text+'</a></li>');
-				} else if (el.element == 'dropdown'){
-					{
-						let dropdownmenu = '<ul id="'+el.id+'navbar" class="dropdown-content">';
-						el.items.forEach(function(el2){
-							let target = '_top';
-							let extraClass = null;
-							if ('target' in el2){
-								target = el2.target;
-							}
-							if ('class' in el2){
-								extraClass = ' ' + el2.class;
-							}
-							dropdownmenu += '<li><a href="'+el2.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons left">'+el2.icon+'</i>'+el2.text+'</a></li>';
+
+			tabs.forEach(function(tab){
+
+				if ('navbar' in tab){
+					let tabnav = tab.navbar;
+					let navData = '';
+
+					if (tabnav.element == 'a'){
+
+						let target = 		( 'target' in tabnav ) ? tabnav.target : "_top" ;
+						let extraClass =	( 'class' in tabnav ) ? tabnav.class : "" ;
+						let text = 			( tabnav.text != null ) ? tabnav.text : "" ;
+						let iconPosition = 	( tabnav.text != null ) ? 'left' : '' ;
+
+						navbar.append('<li><a href="'+tabnav.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons '+iconPosition+'">'+tabnav.icon+'</i>'+text+'</a></li>');
+
+					} else if (tabnav.element == 'dropdown'){
+						let dropdownmenu = '<ul id="'+tabnav.id+'navbar" class="dropdown-content">';
+						tabnav.items.forEach(function(item){
+							let target = 		( 'target' in item ) ? item.target : "_top" ;
+							let extraClass =	( 'class' in item ) ? item.class : "" ;
+							let text = 			( item.text != null ) ? item.text : "" ;
+							let iconPosition = 	( item.text != null ) ? 'left' : '' ;
+
+							dropdownmenu += '<li><a href="'+item.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons '+iconPosition+'">'+item.icon+'</i>'+text+'</a></li>';
 						});
 						dropdownmenu += '</ul>';
 
-						let extraClass = null;
-						if ('class' in el){
-							extraClass = ' ' + el.class;
-						}
-						let dropdownbtn = '<li><a class="dropdown-trigger '+extraClass+'" id="'+el.id+'navbarbtn" data-target="'+el.id+'navbar">'+el.text+'<i class="material-icons right">'+el.icon+'</i></a></li>';
+						let extraClass =	( 'class' in tabnav ) ? tabnav.class : "" ;
+						let text = 			( tabnav.text != null ) ? tabnav.text : "" ;
+						let iconPosition = 	( tabnav.text != null ) ? 'right' : '' ;
+
+						let dropdownbtn = '<li><a class="dropdown-trigger '+extraClass+'" id="'+tabnav.id+'navbarbtn" data-target="'+tabnav.id+'navbar">'+text+'<i class="material-icons '+iconPosition+'">'+tabnav.icon+'</i></a></li>';
 
 						navbar.before(dropdownmenu);
 						navbar.append(dropdownbtn);
-						$('#'+el.id+'navbarbtn').dropdown({
+
+						$('#'+tabnav.id+'navbarbtn').dropdown({
 							'autoTrigger': true,
 							'coverTrigger': false,
 							'constrainWidth': false,
@@ -97,24 +96,42 @@ $(document).ready(function() {
 							'outDuration': 300
 						});
 					}
-					{
-						let extraClass = null;
-						if ('class' in el){
-							extraClass = ' ' + el.class;
-						}
-						let collapsible = '<li class="no-padding"><ul id="'+el.id+'sidebarbtn" class="collapsible collapsible-accordion '+extraClass+'"><li><a class="collapsible-header"><i class="material-icons left">'+el.icon+'</i>'+el.text+'<i class="material-icons right">arrow_drop_down</i></a><div class="collapsible-body"><ul>';
-						el.items.forEach(function(el2){
-							collapsible += '<li><a href="'+el2.href+'"><i class="material-icons left">'+el2.icon+'</i>'+el2.text+'</a></li>';
+
+				}
+				if ('sidebar' in tab){
+					let tabside = tab.sidebar;
+					let sideData = '';
+
+					if (tabside.element == 'a'){
+
+						let target = 		( 'target' in tabside ) ? tabside.target : "_top" ;
+						let extraClass =	( 'class' in tabside ) ? tabside.class : "" ;
+
+						sidebar.append('<li><a href="'+tabside.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons left">'+tabside.icon+'</i>'+tabside.text+'</a></li>');
+
+					} else if (tabside.element == 'dropdown'){
+
+						let extraClass =	( 'class' in tabside ) ? tabside.class : "" ;
+						let text = 			( tabside.text != null ) ? tabside.text : "" ;
+						let iconPosition = 	( tabside.text != null ) ? 'left' : '' ;
+
+						let collapsible = '<li class="no-padding"><ul id="'+tabside.id+'sidebarbtn" class="collapsible collapsible-accordion '+extraClass+'"><li><a class="collapsible-header"><i class="material-icons '+iconPosition+'">'+tabside.icon+'</i>'+text+'<i class="material-icons right">arrow_drop_down</i></a><div class="collapsible-body"><ul>';
+						tabside.items.forEach(function(item){
+							let target = 		( 'target' in item ) ? item.target : "_top" ;
+							let extraClass =	( 'class' in item ) ? item.class : "" ;
+							let text = 			( item.text != null ) ? item.text : "" ;
+							let iconPosition = 	( item.text != null ) ? 'left' : '' ;
+
+							collapsible += '<li><a href="'+item.href+'" target="'+target+'" class="'+extraClass+'"><i class="material-icons '+iconPosition+'">'+item.icon+'</i>'+text+'</a></li>';
 						});
 						collapsible += '</ul></div></li></ul></li>';
 						sidebar.append(collapsible);
-						$('#'+el.id+'sidebarbtn').collapsible({
-
-						});
+						$('#'+tabside.id+'sidebarbtn').collapsible();
 
 					}
 
 				}
+
 			});
 		}
   	}).fail(function() {
@@ -129,6 +146,7 @@ $(document).ready(function() {
 		});
 	}).always(function( data ) {
     	console.log( "navbar - process completed" );
+
 	});
 });
 </script>

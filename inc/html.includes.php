@@ -27,9 +27,7 @@ class includes{
 		<script type="text/javascript" src="https://static.aljaxus.eu/lib/jquery/jquery-3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://static.aljaxus.eu/lib/materializecss/materializecss-v1.0.0-beta/js/materialize.min.js"></script>
 
-		<!-- FONT LIBRARIES -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
+
 
 		';
 
@@ -43,6 +41,10 @@ class includes{
 	public function foot(){
 		foreach (glob(__DIR__ . '/global/html.modal-*.php') as $filename){include_once $filename;}
 		echo '
+		<!-- FONT LIBRARIES -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Tillana" rel="stylesheet">
+
 		<!-- PLUGINS -->
 		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 		<script src="https://static.aljaxus.eu/lib/js-cookie/js-cookie-v2.2.0.js"></script>
