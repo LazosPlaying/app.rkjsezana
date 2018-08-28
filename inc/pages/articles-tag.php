@@ -10,132 +10,21 @@
 		</center>
 	</div>
 </div>
+
+<!-- ARTICLES JAVASCRIPT -->
+<script src="/externals/global-get.articles.js" charset="utf-8"></script>
 <script type="text/javascript">
-/*
-///////////////////////////////////////////////////////////
-///////////////////// ARTICLES LOADER /////////////////////
-///////////////////////////////////////////////////////////
-*/
 $(document).ready(function() {
-	loadArticles("<?php echo $_GET['par2'] ?>");
-});
-function loadArticles(tag = "", page = 1, limit = 6 ) {
+	let tag =  "<?php echo $_GET['par2'] ?>"
 	document.title='Objave z oznako "'+tag+'" - RKJ Sežana';
-	$.post(
-		'/api/get/articles',
+	loadArticles(
+		$('#maincard'),
 		{
 			bytag: tag,
-			page: page,
-			limit: limit
-		},
-		function(data, textStatus, xhr) {
-			/*optional stuff to do after success */
+			maxchars: 1000
 		}
-	).done(function( data ) {
-		console.log("***************************************************");
-		console.log("Articles - success");
-		console.log(data);
-		{
-			let dat = data.data.articles;
-			let datinfo = data.data.info;
-			let maindiv = $('#maincard');
-			maindiv.html('');
-
-			dat.forEach(function(el) {
-				let loopDat = [];
-				let content = "";
-				{
-					let a = date = new Date(el.time*1000);
-
-					let months = ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Avg','Sep','Okt','Nov','Dec'];
-
-					let year = a.getFullYear();
-					let month = months[a.getMonth()];
-					let day = a.getDate();
-					let hour = a.getHours();
-					let min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
-					let sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
-					let time = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-					let time_nosec = day + ' ' + month + ' ' + year + ' ' + hour + ':' + min ;
-
-					loopDat.timeFormat = time;
-					loopDat.timeNoSec = time_nosec;
-				}
-
-				{
-					{
-						loopDat.link = 'https://rkjsezana.app/r/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
-					}
-
-
-					content += '<div class="article" id="article_'+el.id+'">';
-						content += '<div class="article-header">';
-							content += '<span class="article-time"><span class="article-prettytime" timestamp="'+el.time+'">'+loopDat.timeFormat+'</span> - '+loopDat.timeNoSec+'</span>';
-							content += '<div class="article-title"><a href="'+loopDat.link+'">'+el.title+'</a></div>';
-						content += '</div>';
-
-
-						content += '<div class="article-post">';
-							content += '<div class="article-content">';
-								el.content.length > 1000 ? content += el.content.substring(0,1000) + '...' : content += el.content;
-
-							content += '</div>';
-							content += '<div class="article-tags">';
-								el.tags.forEach(function(tag){
-									content += '<a href="/r/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
-								});
-							content += '</div>';
-						content += '</div>';
-					content += "</div>";
-				}
-
-				console.log(['Article id: '+el.id, el, loopDat]);
-				maindiv.append(content);
-			});
-			if (datinfo.success.query == true, datinfo.success.fetch == false){
-				maindiv.append('<center><h4>Napaka!</h4><h5>Ni nam uspelo najti objav(-e) s tako oznako.</h5><br></center>');
-			} else if (datinfo.success.query == false, datinfo.success.fetch == false) {
-				maindiv.append('<center><h4>Napaka!</h4><p class="canSelectText" style="font-size:large">Prišlo je do nepričakovane napake na naši strani. Prosimo, da nas opozorite preko <a href="mailto:aljaxus.dev@gmail.com">emaila</a> (Trenutni čas: '+$.now()+').</p></center>');
-			}
-		}
-		$(".article-prettytime").prettydate({
-			afterSuffix: "pozneje",
-			beforeSuffix: "od tega",
-			autoUpdate: true,
-			duration: 5000, // milliseconds
-			messages: {
-				second: "Just now",
-				seconds: "%s sekund %s",
-				minute: "Minuto %s",
-				minutes: "%s minut %s",
-				hour: "Uro %s",
-				hours: "%s ur %s",
-				day: "Dan %s",
-				days: "%s dni %s",
-				week: "Teden %s",
-				weeks: "%s tednov %s",
-				month: "Mesec %s",
-				months: "%s mesecev %s",
-				year: "Leto %s",
-				years: "%s let %s",
-
-				// Extra
-				yesterday: "Včeraj",
-				beforeYesterday: "Predvčerajšnjim",
-				tomorrow: "Jutri",
-				afterTomorrow: "Pojutrišnjem"
-			}
-		});
-	}).fail(function( data ) {
-		console.log("***************************************************");
-		console.log("Articles - fail");
-		M.toast({html: '<i class="material-icons">warning</i>Med komunikacijo s strežnikom je prišlo do napake'});
-	}).always(function( data ) {
-		console.log("Articles - process completed");
-
-	});
-}
-
+	);
+});
 </script>
 <style media="all">
 .articles {

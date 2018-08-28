@@ -8,17 +8,27 @@
 		</center>
 	</div>
 </div>
+
+<!-- ARTICLES JAVASCRIPT -->
+<script src="/externals/global-get.articles.js" charset="utf-8"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	let id =  "<?php echo $_GET['id'] ?>"
+	document.title='Objave z oznako "'+id+'" - RKJ Sežana';
+	loadArticles(
+		$('#maincard'),
+		{
+			byid: id,
+			maxchars: false
+		}
+	);
+});
+</script>
+
+<!-- <script type="text/javascript">
 $(document).ready(function() {
 	loadArticles(<?php echo $_GET['id']; ?>);
 });
-/*   ___       __             __       ___      ___   ___  __    __       _______.    _______  __    __
-    /   \     |  |           |  |     /   \     \  \ /  / |  |  |  |     /       |   |   ____||  |  |  |
-   /  ^  \    |  |           |  |    /  ^  \     \  V  /  |  |  |  |    |   (----`   |  |__   |  |  |  |
-  /  /_\  \   |  |     .--.  |  |   /  /_\  \     >   <   |  |  |  |     \   \       |   __|  |  |  |  |
- /  _____  \  |  `----.|  `--'  |  /  _____  \   /  .  \  |  `--'  | .----)   |    __|  |____ |  `--'  |
-/__/     \__\ |_______| \______/  /__/     \__\ /__/ \__\  \______/  |_______/    (__)_______| \______/
-*/
 /*
 ///////////////////////////////////////////////////////////
 ///////////////////// ARTICLES LOADER /////////////////////
@@ -146,7 +156,7 @@ function loadArticles(id) {
 
 	});
 }
-</script>
+</script> -->
 <style media="all">
 /*   ___       __             __       ___      ___   ___  __    __       _______.    _______  __    __
     /   \     |  |           |  |     /   \     \  \ /  / |  |  |  |     /       |   |   ____||  |  |  |
