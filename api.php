@@ -65,6 +65,7 @@ if (isset($_GET) && !empty($_GET)){
 					include_once $path;
 					$statusData['exists']['file'] = true;
 				} else {
+					$statusData['exists']['file'] = false;
 					// FILE DOES NOT EXIST
 				}
 
@@ -75,6 +76,7 @@ if (isset($_GET) && !empty($_GET)){
 					include_once $path;
 					$statusData['exists']['file'] = true;
 				} else {
+					$statusData['exists']['file'] = false;
 					// FILE DOES NOT EXIST
 				}
 			}
