@@ -8,11 +8,12 @@ $html = new includes();
 $userUtil = new user();
 if ($userUtil->getSessionStatus() === 'valid'){
 	// User is loged in and not locked
-	require_once __DIR__ . '/inc/pagechecks/check.admin.php';
 } else if ($userUtil->getSessionStatus() === 'locked') {
+	// User is loged in and locked
 	Header('Location: /account/locked');
 	exit();
 } else if ($userUtil->getSessionStatus() === 'dead' || $userUtil->getSessionStatus() === 'nosession'){
+	// User is not loged
 	Header('Location: /account/login');
 	exit();
 } else {
