@@ -24,41 +24,33 @@ $data = array(
 	'articles' => array()
 );
 {
-		if (isset($_GET)&&!empty($_GET)){
+		if (!empty($_POST)){
+			$data['info']['is_set']['post'] = true;
+		} else {
+			$data['info']['is_set']['post'] = false;
+		}
+
+		if (!empty($_GET)){
 			$data['info']['is_set']['get'] = true;
 		} else {
 			$data['info']['is_set']['get'] = false;
 		}
 
-		if (isset($_POST)&&!empty($_POST)){
-			$data['info']['is_set']['post'] = true;
-		} else {
-			$data['info']['is_set']['post'] = false;
-		}
 }
 {
-		if ( (isset($_GET['limit'])&&!empty($_GET['limit'])&&is_numeric($_GET['limit']))||(isset($_POST['limit'])&&!empty($_POST['limit'])&&is_numeric($_POST['limit'])) ){
+		if ( !empty($_GET['limit']) && is_numeric($_GET['limit']) ){
 
 			$data['info']['is_set']['limit'] = true;
-			if (isset($_POST['limit'])){
-				$data['info']['limit'] = $_POST['limit'];
-			} elseif(isset($_GET['limit'])){
-				$data['info']['limit'] = $_GET['limit'];
-			}
-
+			$data['info']['limit'] = ($_GET['limit'] <= 50) ? $_GET['limit'] : 20;
 		} else {
 			$data['info']['is_set']['limit'] = false;
 			$data['info']['limit'] = 20;
 		}
 
-		if ( (isset($_GET['page'])&&!empty($_GET['page'])&&is_numeric($_GET['page']))||(isset($_POST['page'])&&!empty($_POST['page'])&&is_numeric($_POST['limit'])) ){
+		if ( !empty($_GET['page']) && is_numeric($_GET['page']) ){
 
 			$data['info']['is_set']['page'] = true;
-			if (isset($_POST['page'])){
-				$data['info']['page'] = $_POST['page'];
-			} elseif(isset($_GET['page'])){
-				$data['info']['page'] = $_GET['page'];
-			}
+			$data['info']['page'] = ($_GET['page'] <= 999) ? $_GET['page'] : 1;
 
 		} else {
 			$data['info']['is_set']['page'] = false;
@@ -66,42 +58,26 @@ $data = array(
 		}
 
 
-		if ( (isset($_GET['byid'])&&!empty($_GET['byid'])&&is_numeric($_GET['byid']))||(isset($_POST['byid'])&&!empty($_POST['byid'])&&is_numeric($_POST['byid'])) ){
+		if ( !empty($_GET['byid']) && is_numeric($_GET['byid']) ){
 
 			$data['info']['is_set']['byid'] = true;
-			if (isset($_POST['byid'])){
-				$data['info']['byid'] = $_POST['byid'];
-			} elseif (isset($_GET['byid'])){
-				$data['info']['byid'] = $_GET['byid'];
-			}
+			$data['info']['byid'] = $_GET['byid'];
 
 		} else {
 			$data['info']['is_set']['byid'] = false;
 			$data['info']['byid'] = null;
 		}
 
-		if ( ( isset($_GET['bytag']) && !empty($_GET['bytag']) ) || ( isset($_POST['bytag']) && !empty($_POST['bytag']) ) ){
+		if ( !empty($_GET['bytag']) ){
 
 			$data['info']['is_set']['bytag'] = true;
-			if (isset($_POST['bytag'])){
-				$data['info']['bytag'] = $_POST['bytag'];
-			} elseif (isset($_GET['bytag'])){
-				$data['info']['bytag'] = $_GET['bytag'];
-			}
+			$data['info']['bytag'] = $_GET['bytag'];
 
 		} else {
 			$data['info']['is_set']['bytag'] = false;
 			$data['info']['bytag'] = null;
 		}
 
-}
-{
-	if ($data['info']['limit'] > 50){
-		$data['info']['limit'] = 20;
-	}
-	if ($data['info']['page'] > 200){
-		$data['info']['page'] = 1;
-	}
 }
 {
 	if ($data['info']['is_set']['byid'] === true && $data['info']['is_set']['bytag'] === false){
