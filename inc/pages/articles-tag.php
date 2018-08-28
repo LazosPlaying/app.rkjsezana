@@ -64,7 +64,7 @@ function loadArticles(tag = "", page = 1, limit = 6 ) {
 
 				{
 					{
-						loopDat.link = 'https://rkjsezana.app/articles/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
+						loopDat.link = 'https://rkjsezana.app/r/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
 
@@ -82,7 +82,7 @@ function loadArticles(tag = "", page = 1, limit = 6 ) {
 							content += '</div>';
 							content += '<div class="article-tags">';
 								el.tags.forEach(function(tag){
-									content += '<a href="/articles/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
+									content += '<a href="/r/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
 								});
 							content += '</div>';
 						content += '</div>';
@@ -93,9 +93,9 @@ function loadArticles(tag = "", page = 1, limit = 6 ) {
 				maindiv.append(content);
 			});
 			if (datinfo.success.query == true, datinfo.success.fetch == false){
-				maindiv.append('<center><h4>Napaka!</h4><h5>Ni nam uspelo najti objav(-e) s tako oznako.</h5></center>');
+				maindiv.append('<center><h4>Napaka!</h4><h5>Ni nam uspelo najti objav(-e) s tako oznako.</h5><br></center>');
 			} else if (datinfo.success.query == false, datinfo.success.fetch == false) {
-				maindiv.append('<center><h4>Napaka!</h4><h5>Prišlo je do nepričakovane napake na naši strani. Prosimo, da nas opozorite preko <a href="mailto:aljaxus.dev@gmail.com">emaila</a> (omenite tudi trenutni čas).</h5></center>');
+				maindiv.append('<center><h4>Napaka!</h4><p class="canSelectText" style="font-size:large">Prišlo je do nepričakovane napake na naši strani. Prosimo, da nas opozorite preko <a href="mailto:aljaxus.dev@gmail.com">emaila</a> (Trenutni čas: '+$.now()+').</p></center>');
 			}
 		}
 		$(".article-prettytime").prettydate({

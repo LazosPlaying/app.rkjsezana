@@ -53,7 +53,7 @@
 						let loc = window.location.pathname;
 						if (
 							(loc!='/') &&
-							(!loc.startsWith("/articles/")) &&
+							(!loc.startsWith("/r/")) &&
 							(loc!='/account/login') &&
 							(loc!='/account/signup')
 						){

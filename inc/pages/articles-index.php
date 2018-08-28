@@ -68,7 +68,7 @@ function loadArticles(id) {
 				{
 					{
 						// Generate acticle URL && replace invalid characters in article title
-						loopDat.link = 'https://rkjsezana.app/articles/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
+						loopDat.link = 'https://rkjsezana.app/r/'+el.title.replace(/\s+/g, "-")+'.'+el.id+'/';
 					}
 
 					{
@@ -94,7 +94,7 @@ function loadArticles(id) {
 							content += '</div>';
 							content += '<div class="article-tags">';
 								el.tags.forEach(function(tag){
-									content += '<a href="/articles/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
+									content += '<a href="/r/tag/'+tag+'"><span class="new badge" data-badge-caption="">'+tag+'</span></a>';
 								});
 							content += '</div>';
 						content += '</div>';
